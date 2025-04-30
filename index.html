@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wire - Coming Soon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+        form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        input[type="email"] {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            width: 250px;
+            outline: none;
+            font-size: 1rem;
+        }
+        button {
+            padding: 12px 24px;
+            background-color: #ffffff;
+            color: #1e3c72;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+        #message {
+            margin-top: 25px;
+            font-size: 1rem;
+            color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Wire</h1>
+    <p>Digitizing Fare Payments. Join the movement to revolutionize payments!</p>
+    <form id="waitlist-form">
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <button type="submit">Join Waitlist</button>
+    </form>
+    <div id="message"></div>
+
+    <script>
+        const form = document.getElementById('waitlist-form');
+        const messageDiv = document.getElementById('message');
+
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email.toLowerCase());
+        }
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+
+            if (!isValidEmail(email)) {
+                messageDiv.style.color = 'yellow';
+                messageDiv.textContent = 'Please enter a valid email address.';
+                return;
+            }
+
+            console.log(`Email submitted: ${email}`);
+
+            messageDiv.style.color = 'lightgreen';
+            messageDiv.textContent = `Thank you for joining, ${email}! We'll be in touch.`;
+            form.reset();
+        });
+    </script>
+
+</body>
+</html>
