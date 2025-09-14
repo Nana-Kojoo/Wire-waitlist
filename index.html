@@ -3,109 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wire - Coming Soon</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-        }
-        p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-        form {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-        }
-        input[type="email"] {
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            width: 250px;
-            outline: none;
-            font-size: 1rem;
-        }
-        button {
-            padding: 12px 24px;
-            background-color: #ffffff;
-            color: #1e3c72;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-        }
-        button:hover {
-            background-color: #f0f0f0;
-            transform: scale(1.05);
-        }
-        #message {
-            margin-top: 25px;
-            font-size: 1rem;
-            color: lightgreen;
-        }
-    </style>
+    <title>Wire | Simple Digital Transit Payments</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-bolt"></i>
+                    Wire
+                </a>
+            </nav>
+        </div>
+    </header>
 
-    <h1>Wire</h1>
-    <p>Digitizing Fare Payments. Join the movement to revolutionize payments!</p>
-    <form id="waitlist-form">
-        <input type="email" id="email" placeholder="Enter your email" required>
-        <button type="submit">Join Waitlist</button>
-    </form>
-    <div id="message"></div>
+    <section class="hero" id="waitlist">
+        <div class="container">
+            <h1>One Tap for Every Ride</h1>
+            <p>Wire digitizes local transit payments so you never need cash, tickets, or multiple apps again.</p>
+            <form class="waitlist-form" id="waitlistForm">
+                <input type="email" class="waitlist-input" placeholder="Enter your email" required>
+                <button type="submit" class="waitlist-btn">Join Waitlist</button>
+            </form>
+            <div class="confirmation" id="confirmationMessage">
+                <i class="fas fa-check"></i> Thanks! You've been added to our waitlist.
+            </div>
+        </div>
+    </section>
+
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="problem-content">
+                <div class="problem-text">
+                    <h2>The Transit Payment Problem</h2>
+                    <p>Local transit payment systems are fragmented and stuck in the past, creating unnecessary friction for riders.</p>
+                    <ul class="problem-list">
+                        <li>
+                            <i class="fas fa-times"></i>
+                            <div>Multiple payment systems across different transit providers</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-times"></i>
+                            <div>Outdated technology requiring exact change or specific cards</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-times"></i>
+                            <div>No unified way to track transit spending</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-times"></i>
+                            <div>Tourists and infrequent riders face the most friction</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="problem-image">
+                    <p>Current transit payment systems create unnecessary friction and complexity for daily commuters and visitors alike.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+    <div class="container">
+        <h2 class="section-title">Simple Digital Payments</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Digital Payments</h3>
+                <p>Pay for any local transit with your phone. No more searching for exact change or waiting in line for tickets.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-universal-access"></i>
+                </div>
+                <h3>Universal Access</h3>
+                <p>Works across bus, train, ferry, and other transit systems with a single account and payment method.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h3>Spending Insights</h3>
+                <p>Track all your transit spending in one place with detailed analytics and expense reporting.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How Wire Works</h2>
+            <div class="steps">
+    <div class="step">
+        <div class="step-number">1</div>
+        <h3><i class="fas fa-download"></i> Download & Connect</h3>
+        <p>Install the Wire app and link your preferred payment method. Your data is encrypted end-to-end.</p>
+    </div>
+    <div class="step">
+        <div class="step-number">2</div>
+        <h3><i class="fas fa-mobile-alt"></i> Tap & Ride</h3>
+        <p>When you board any transit, simply tap your phone or show the digital pass. Wire handles the rest.</p>
+    </div>
+    <div class="step">
+        <div class="step-number">3</div>
+        <h3><i class="fas fa-file-invoice-dollar"></i> Get One Bill</h3>
+        <p>Receive a single monthly statement with all your transit expenses, categorized by provider and trip type.</p>
+    </div>
+</div>
+
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Simplify Your Transit Payments</h2>
+            <p>Join the waitlist to be among the first to experience frictionless transit payments.</p>
+            <form class="waitlist-form" id="ctaWaitlistForm">
+                <input type="email" class="waitlist-input" placeholder="Enter your email" required>
+                <button type="submit" class="waitlist-btn">Join Waitlist</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Wire</div>
+                <div class="footer-links">
+                    <a href="#problem">Problem</a>
+                    <a href="#features">Solution</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#waitlist">Join Waitlist</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Wire Technologies, Inc.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        const form = document.getElementById('waitlist-form');
-        const messageDiv = document.getElementById('message');
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real implementation, you would send this to your backend
+            // For this demo, we'll just show the confirmation message
+            document.getElementById('confirmationMessage').style.display = 'block';
+            this.reset();
+            
+            // Scroll to confirmation message
+            document.getElementById('confirmationMessage').scrollIntoView({ behavior: 'smooth' });
+        });
 
-        function isValidEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email.toLowerCase());
-        }
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const email = document.getElementById('email').value.trim();
-
-            if (!isValidEmail(email)) {
-                messageDiv.style.color = 'yellow';
-                messageDiv.textContent = 'Please enter a valid email address.';
-                return;
-            }
-
-            console.log(`Email submitted: ${email}`);
-
-            messageDiv.style.color = 'lightgreen';
-            messageDiv.textContent = `Thank you for joining, ${email}! We'll be in touch.`;
-            form.reset();
+        document.getElementById('ctaWaitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for joining our waitlist!');
+            this.reset();
         });
     </script>
-
 </body>
 </html>
