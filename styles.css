@@ -199,6 +199,23 @@
       transform: translateY(-1px);
     }
 
+    .loader {
+      display: none; /* hidden by default */
+      margin: 20px auto;
+      border: 4px solid #f3f3f3; 
+      border-top: 4px solid #000; 
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      animation: spin 1s linear infinite;
+    }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
     .confirmation {
       display: none;
       background: var(--gray-100);
@@ -207,7 +224,7 @@
       border-radius: var(--radius);
       margin-top: 1rem;
       width: 100%;
-      border-left: 4px solid var(--black);
+      border-left: 4px solid green;
     }
 
     footer {

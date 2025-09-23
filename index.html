@@ -57,9 +57,14 @@
         <input type="email" placeholder="Enter your email" required>
         <button type="submit">Join Waitlist</button>
       </form>
-      <div class="confirmation" id="confirmation-message">
-        ✅ Thank you for joining the RideFund waitlist! We'll be in touch soon.
-      </div>
+     <div class="confirmation" id="confirmation-message">
+    <i data-lucide="check-circle"></i> Thank you for joining the RideFund waitlist! We'll be in touch soon.
+    </div>
+
+
+      <div class="loader" id="loader"></div>
+
+
     </div>
 
     <footer>
@@ -67,20 +72,82 @@
     </footer>
   </div>
 
-  <script>
-    lucide.createIcons(); // activate Lucide icons
 
-    document.getElementById("waitlist-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const confirmation = document.getElementById("confirmation-message");
-      confirmation.style.display = "block";
-      
-      // Reset form
-      this.reset();
-      
-      // Scroll to confirmation message
-      confirmation.scrollIntoView({ behavior: 'smooth', block: 'center' });
+<script type="module">
+  lucide.createIcons(); // activate Lucide icons
+
+  // Firebase SDKs
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-analytics.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyANbEhab8OqFFW2oLDC8SxOyffmH8JTBkU",
+    authDomain: "ridefund-50e20.firebaseapp.com",
+    projectId: "ridefund-50e20",
+    storageBucket: "ridefund-50e20.appspot.com",  
+    messagingSenderId: "338822696202",
+    appId: "1:338822696202:web:25f53ca1bb10ae03b63ef3",
+    measurementId: "G-2H7Q2B9TQZ"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getFirestore(app); 
+
+  // Telegram bot details
+  const BOT_TOKEN = "8312567026:AAFK5mj_Ppi3LJKmQBp2rOzAQA-EcZ3tJoc";
+  const CHAT_ID = "6003493857";
+
+  // Form logic
+  const form = document.getElementById("waitlist-form");
+  const confirmation = document.getElementById("confirmation-message");
+  confirmation.style.display = "none";
+
+
+  const loader = document.getElementById("loader");
+
+  form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = form.querySelector("input[type='email']").value.trim().toLowerCase();
+
+  if (!email) return alert("Please enter a valid email");
+
+  loader.style.display = "block";       //  show loader
+  confirmation.style.display = "none";  // hide old confirmation
+
+  try {
+    // 1️⃣ Save to Firestore
+    await addDoc(collection(db, "waitlist"), {
+      email,
+      joinedAt: new Date().toISOString()
     });
-  </script>
+
+    // 2️⃣ Send Telegram notification
+    const message = `📩 New RideFund signup: ${email}`;
+    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: CHAT_ID, text: message })
+    });
+
+    // 3️⃣ Show success message
+    loader.style.display = "none";      //  hide loader
+    confirmation.style.display = "block";
+    form.reset();
+    confirmation.scrollIntoView({ behavior: "smooth", block: "center" });
+  } catch (err) {
+    console.error("Error:", err);
+    loader.style.display = "none";      // hide loader on error
+    alert("Something went wrong. Try again.");
+  }
+});
+
+</script>
+
+
+
 </body>
 </html>
